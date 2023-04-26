@@ -63,9 +63,10 @@ class BankAccount{
 		Scanner sc = new Scanner(System.in);
 		System.out.println(customerName+"님, TH은행에 오신 걸 환영합니다.");
 		System.out.println(customerName+"님의 계좌아이디는 "+customerId+" 입니다.");
-		viewMenu();
+
 		
 		do {
+			viewMenu();
 			System.out.println("어떤 업무를 보시겠습니까? > ");
 			
 			option = sc.next().charAt(0);
