@@ -55,7 +55,7 @@ class BankAccount{
 		System.out.println("=========================");
 		
 	}
-	//메뉴 선택하기
+	//메뉴 선택
 	void showMenu() {
 		
 		char option = '\0';
