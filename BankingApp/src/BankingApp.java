@@ -1,7 +1,7 @@
 import java.util.*;
 
 class BankAccount{
-	int balance = 0; //잔액
+	int balance; //잔액
 	int previousTransaction; // 이전거래
 	String customerName; // 고객이름
 	String customerId; // 고객 아이디
