@@ -1,7 +1,7 @@
 import java.util.*;
 
 class BankAccount{
-	int balance; //잔액
+	int balance = 0; //잔액
 	int previousTransaction; // 이전거래
 	String customerName; // 고객이름
 	String customerId; // 고객 아이디
@@ -25,6 +25,7 @@ class BankAccount{
 			previousTransaction = amount;
 		}
 	}
+	
 	//출금
 	void withdraw(int amount) {
 		if(amount != 0) {
@@ -73,23 +74,42 @@ class BankAccount{
 			System.out.println("\n");
 			switch (option) {
 			case '1':
-				System.out.println("=========예금========");
-				System.out.println("예금하실 금액을 입력하세요.");
-				System.out.println("====================");
-				int amount = sc.nextInt();
-				deposit(amount);
-				System.out.println(amount+"원이 입금되었습니다.");
-				System.out.println("\n");
+				int amount;
+				do {
+					System.out.println("=========예금========");
+					System.out.println("예금하실 금액을 입력하세요.");
+					System.out.println("====================");
+					amount = sc.nextInt();
+					if(amount > 0) {
+						deposit(amount);
+						System.out.println(amount+"원이 입금되었습니다.");
+						System.out.println("\n");
+					}else if(amount == 0) {
+						System.out.println("입금할 금액이 없습니다. 다시 입력해주세요.");
+					}
+					else {
+						System.out.println("잘못된 금액을 입력하셨습니다. 다시입력해주세요.");
+						}
+					}while(amount <= 0);
 				break;
 			
 			case '2':
-				System.out.println("=========출금========");
-				System.out.println("출금하실 금액을 입력하세요.");
-				System.out.println("====================");
-				int amount2 = sc.nextInt();
-				withdraw(amount2);
-				System.out.println(amount2+"원이 출금되었습니다.");
-				System.out.println("\n");
+				int amount2;
+				do {
+					System.out.println("=========출금========");
+					System.out.println("출금하실 금액을 입력하세요.");
+					System.out.println("====================");
+					amount2 = sc.nextInt();
+					if(amount2 > 0) {
+						withdraw(amount2);
+						System.out.println(amount2+"원이 출금되었습니다.");
+						System.out.println("\n");
+					}else if(amount2 == 0) {
+						System.out.println("출금할 금액이 없습니다. 다시 입력해주세요.");
+					}else {
+						System.out.println("잘못된 금액을 입력하셨습니다. 다시입력해주세요.");
+						}
+					}while(amount2 <= 0);
 				break;
 				
 			case '3':
