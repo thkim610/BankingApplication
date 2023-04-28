@@ -1,15 +1,14 @@
 import java.util.*;
 
+// 잘못 입력 시 예외처리
+// 천 단위 구분 기호 처리
+
 class BankAccount{
 	static int balance; //잔액
 	int previousTransaction; // 이전거래
 	String customerName; // 고객이름
 	String customerId; // 고객 아이디
 	
-//	public BankAccount(String cName, String cId) {
-//		customerName = cName;
-//		customerId = cId;
-//	}
 	void Userinfo() {
 		Scanner sc1 = new Scanner(System.in);
 		System.out.println("이름을 입력하세요.>");
