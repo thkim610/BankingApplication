@@ -1,7 +1,7 @@
 import java.util.*;
 
 class BankAccount{
-	int balance; //잔액
+	static int balance; //잔액
 	int previousTransaction; // 이전거래
 	String customerName; // 고객이름
 	String customerId; // 고객 아이디
@@ -17,11 +17,20 @@ class BankAccount{
 		System.out.println("계좌 아이디를 입력하세요.>");
 		customerId = sc1.next();
 	}
+	//잔액 저장
+	void balanceSave() {
+		if(balance >= 0) {
+			balance = balance;
+		}else {
+			balance = 0;
+		}
+	}
 	
 	//예금
 	void deposit(int amount) { //매개변수: 금액
 		if(amount != 0) {
 			balance = balance + amount;
+			balanceSave();
 			previousTransaction = amount;
 		}
 	}
@@ -30,7 +39,16 @@ class BankAccount{
 	void withdraw(int amount) {
 		if(amount != 0) {
 			balance = balance - amount;
-			previousTransaction = -amount;
+				if(balance >= 0) {
+					previousTransaction = -amount;
+					System.out.println(amount+"원이 출금되었습니다.");
+					System.out.println("\n");
+					balanceSave();
+				}else {
+					System.out.println("잔액이 부족하여 출금할 수 없습니다.");
+					balance = balance + amount; // 출금하기 전 잔액으로 되돌림.
+					balanceSave();
+			}
 		}
 	}
 	//이전 거래내역
@@ -102,8 +120,6 @@ class BankAccount{
 					amount2 = sc.nextInt();
 					if(amount2 > 0) {
 						withdraw(amount2);
-						System.out.println(amount2+"원이 출금되었습니다.");
-						System.out.println("\n");
 					}else if(amount2 == 0) {
 						System.out.println("출금할 금액이 없습니다. 다시 입력해주세요.");
 					}else {
