@@ -1,7 +1,7 @@
+import java.text.DecimalFormat;
 import java.util.*;
 
 // 잘못 입력 시 예외처리
-// 천 단위 구분 기호 처리
 
 class BankAccount{
 	static int balance; //잔액
@@ -29,8 +29,8 @@ class BankAccount{
 	void deposit(int amount) { //매개변수: 금액
 		if(amount != 0) {
 			balance = balance + amount;
-			balanceSave();
 			previousTransaction = amount;
+			balanceSave();	
 		}
 	}
 	
@@ -40,7 +40,7 @@ class BankAccount{
 			balance = balance - amount;
 				if(balance >= 0) {
 					previousTransaction = -amount;
-					System.out.println(amount+"원이 출금되었습니다.");
+					System.out.println(comma(amount)+"원이 출금되었습니다.");
 					System.out.println("\n");
 					balanceSave();
 				}else {
@@ -53,15 +53,22 @@ class BankAccount{
 	//이전 거래내역
 	void getPreviouTransaction() {
 		if(previousTransaction > 0) {
-			System.out.println("예금: "+previousTransaction+"원");
+			System.out.println("예금: "+comma(previousTransaction)+"원");
 		}
 		else if(previousTransaction < 0) {
-			System.out.println("출금: "+Math.abs(previousTransaction)+"원"); //음수인 previousTransaction값을 절대값으로 변환.
+			System.out.println("출금: "+comma(Math.abs(previousTransaction))+"원"); //음수인 previousTransaction값을 절대값으로 변환.
 		}
 		else {
 			System.out.println("이전 거래내역이 없습니다.");
 		}
 	}
+	
+	String comma(int amount) {
+		DecimalFormat df = new DecimalFormat("###,###");
+		String amount_str = df.format(amount);
+		return amount_str;
+	}
+	
 	//메뉴창보기
 	void viewMenu() {
 		System.out.println("========은행 업무 메뉴========");
@@ -99,7 +106,7 @@ class BankAccount{
 					amount = sc.nextInt();
 					if(amount > 0) {
 						deposit(amount);
-						System.out.println(amount+"원이 입금되었습니다.");
+						System.out.println(comma(amount)+"원이 입금되었습니다.");
 						System.out.println("\n");
 					}else if(amount == 0) {
 						System.out.println("입금할 금액이 없습니다. 다시 입력해주세요.");
@@ -137,7 +144,7 @@ class BankAccount{
 			
 			case '4':
 				System.out.println("=======잔액 확인======");
-				System.out.println(customerName+"님의 잔액은 "+balance+"원 입니다.");
+				System.out.println(customerName+"님의 잔액은 "+comma(balance)+"원 입니다.");
 				System.out.println("===================");
 				System.out.println("\n");
 				break;
