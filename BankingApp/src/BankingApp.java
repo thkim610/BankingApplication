@@ -4,8 +4,8 @@ import java.util.*;
 // 잘못 입력 시 예외처리
 
 class BankAccount{
-	static int balance; //잔액
-	int previousTransaction; // 이전거래
+	static long balance; //잔액
+	long previousTransaction; // 이전거래
 	String customerName; // 고객이름
 	String customerId; // 고객 아이디
 	
@@ -26,7 +26,7 @@ class BankAccount{
 	}
 	
 	//예금
-	void deposit(int amount) { //매개변수: 금액
+	void deposit(long amount) { //매개변수: 금액
 		if(amount != 0) {
 			balance = balance + amount;
 			previousTransaction = amount;
@@ -35,7 +35,7 @@ class BankAccount{
 	}
 	
 	//출금
-	void withdraw(int amount) {
+	void withdraw(long amount) {
 		if(amount != 0) {
 			balance = balance - amount;
 				if(balance >= 0) {
@@ -63,7 +63,8 @@ class BankAccount{
 		}
 	}
 	
-	String comma(int amount) {
+	//천단위 구분기호(,) 입력
+	String comma(long amount) {
 		DecimalFormat df = new DecimalFormat("###,###");
 		String amount_str = df.format(amount);
 		return amount_str;
@@ -98,12 +99,12 @@ class BankAccount{
 			System.out.println("\n");
 			switch (option) {
 			case '1':
-				int amount;
+				long amount;
 				do {
 					System.out.println("=========예금========");
 					System.out.println("예금하실 금액을 입력하세요.");
 					System.out.println("====================");
-					amount = sc.nextInt();
+					amount = sc.nextLong();
 					if(amount > 0) {
 						deposit(amount);
 						System.out.println(comma(amount)+"원이 입금되었습니다.");
@@ -118,12 +119,12 @@ class BankAccount{
 				break;
 			
 			case '2':
-				int amount2;
+				long amount2;
 				do {
 					System.out.println("=========출금========");
 					System.out.println("출금하실 금액을 입력하세요.");
 					System.out.println("====================");
-					amount2 = sc.nextInt();
+					amount2 = sc.nextLong();
 					if(amount2 > 0) {
 						withdraw(amount2);
 					}else if(amount2 == 0) {
