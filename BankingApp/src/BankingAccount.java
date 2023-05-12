@@ -102,7 +102,7 @@
 				option = sc.next().charAt(0);
 				System.out.println("\n");
 				switch (option) {
-				case '1':
+				case '1': case '예':
 					long amount;
 					do {
 						System.out.println("=========예금========");
@@ -122,7 +122,7 @@
 						}while(amount <= 0);
 					break;
 				
-				case '2':
+				case '2': case '출':
 					long amount2;
 					do {
 						System.out.println("=========출금========");
@@ -139,7 +139,7 @@
 						}while(amount2 <= 0);
 					break;
 					
-				case '3':
+				case '3': case '이':
 					System.out.println("=======이전 거래내역======");
 					System.out.println("이전 거래내역입니다.");
 					getPreviouTransaction();
@@ -147,14 +147,14 @@
 					System.out.println("\n");
 					break;
 				
-				case '4':
+				case '4': case '잔':
 					System.out.println("=======잔액 확인======");
 					System.out.println(customerName+"님의 잔액은 "+comma(balance)+"원 입니다.");
 					System.out.println("===================");
 					System.out.println("\n");
 					break;
 				
-				case '5':
+				case '5': case '종':
 					break;
 
 				default:
