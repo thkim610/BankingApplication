@@ -35,6 +35,34 @@
 			}
 		}
 		
+		void depositInputAmount() {
+			try {
+				Scanner sc = new Scanner(System.in);
+				long amount;
+				do {
+					System.out.println("=========예금========");
+					System.out.println("예금하실 금액을 입력하세요.");
+					System.out.println("====================");
+					amount = sc.nextLong();	
+					
+					if(amount > 0) {
+						deposit(amount);
+						System.out.println(comma(amount)+"원이 입금되었습니다.");
+						System.out.println("\n");
+					}else if(amount == 0) {
+						System.out.println("입금할 금액이 없습니다. 다시 입력해주세요.");
+					}
+					else {
+						System.out.println("잘못된 금액을 입력하셨습니다. 다시입력해주세요.");
+					}
+				}while(amount <= 0);
+				
+			} catch (InputMismatchException ie) {
+				System.out.println("*숫자만 입력해주세요!*");
+				depositInputAmount();
+			}
+		}
+		
 		//출금
 		void withdraw(long amount) {
 			if(amount != 0) {
@@ -97,29 +125,15 @@
 			
 			do {
 				viewMenu();
-				System.out.println("어떤 업무를 보시겠습니까? > ");
 				
+				System.out.println("어떤 업무를 보시겠습니까? > ");
 				option = sc.next().charAt(0);
 				System.out.println("\n");
+				
 				switch (option) {
+				
 				case '1': case '예':
-					long amount;
-					do {
-						System.out.println("=========예금========");
-						System.out.println("예금하실 금액을 입력하세요.");
-						System.out.println("====================");
-						amount = sc.nextLong();
-						if(amount > 0) {
-							deposit(amount);
-							System.out.println(comma(amount)+"원이 입금되었습니다.");
-							System.out.println("\n");
-						}else if(amount == 0) {
-							System.out.println("입금할 금액이 없습니다. 다시 입력해주세요.");
-						}
-						else {
-							System.out.println("잘못된 금액을 입력하셨습니다. 다시입력해주세요.");
-							}
-						}while(amount <= 0);
+					depositInputAmount();
 					break;
 				
 				case '2': case '출':
