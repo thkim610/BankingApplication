@@ -79,6 +79,30 @@
 				}
 			}
 		}
+		
+		void withdrawInputAmount() {
+			try {
+				Scanner sc = new Scanner(System.in);
+				long amount2;
+				do {
+					System.out.println("=========출금========");
+					System.out.println("출금하실 금액을 입력하세요.");
+					System.out.println("====================");
+					amount2 = sc.nextLong();
+					if(amount2 > 0) {
+						withdraw(amount2);
+					}else if(amount2 == 0) {
+						System.out.println("출금할 금액이 없습니다. 다시 입력해주세요.");
+					}else {
+						System.out.println("잘못된 금액을 입력하셨습니다. 다시입력해주세요.");
+						}
+					}while(amount2 <= 0);
+			}catch (InputMismatchException ie) {
+				System.out.println("*숫자만 입력해주세요!*");
+				withdrawInputAmount();
+			}
+		}
+		
 		//이전 거래내역
 		void getPreviouTransaction() {
 			if(previousTransaction > 0) {
@@ -137,20 +161,7 @@
 					break;
 				
 				case '2': case '출':
-					long amount2;
-					do {
-						System.out.println("=========출금========");
-						System.out.println("출금하실 금액을 입력하세요.");
-						System.out.println("====================");
-						amount2 = sc.nextLong();
-						if(amount2 > 0) {
-							withdraw(amount2);
-						}else if(amount2 == 0) {
-							System.out.println("출금할 금액이 없습니다. 다시 입력해주세요.");
-						}else {
-							System.out.println("잘못된 금액을 입력하셨습니다. 다시입력해주세요.");
-							}
-						}while(amount2 <= 0);
+					withdrawInputAmount();
 					break;
 					
 				case '3': case '이':
@@ -174,7 +185,7 @@
 				default:
 					System.out.println("유효하지 않은 값을 입력하였습니다.");
 					System.out.println("다시 입력해주세요.");
-					viewMenu();
+					
 					
 					break;
 				}
