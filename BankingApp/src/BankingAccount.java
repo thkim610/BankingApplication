@@ -140,7 +140,7 @@
 		//메뉴 선택
 		void showMenu() {
 			
-			char option = '\0';
+			String option;
 			
 			Scanner sc = new Scanner(System.in);
 			System.out.println(customerName+"님, TH은행에 오신 걸 환영합니다.");
@@ -151,20 +151,20 @@
 				viewMenu();
 				
 				System.out.println("어떤 업무를 보시겠습니까? > ");
-				option = sc.next().charAt(0);
+				option = sc.next();//.charAt(0);
 				System.out.println("\n");
 				
 				switch (option) {
 				
-				case '1': case '예':
+				case "1": case "예금":
 					depositInputAmount();
 					break;
 				
-				case '2': case '출':
+				case "2": case "출금":
 					withdrawInputAmount();
 					break;
 					
-				case '3': case '이':
+				case "3": case "이전 거래내역":
 					System.out.println("=======이전 거래내역======");
 					System.out.println("이전 거래내역입니다.");
 					getPreviouTransaction();
@@ -172,24 +172,23 @@
 					System.out.println("\n");
 					break;
 				
-				case '4': case '잔':
+				case "4": case "잔액 확인":
 					System.out.println("=======잔액 확인======");
 					System.out.println(customerName+"님의 잔액은 "+comma(balance)+"원 입니다.");
 					System.out.println("===================");
 					System.out.println("\n");
 					break;
 				
-				case '5': case '종':
+				case "5": case "종료":
 					break;
 
 				default:
 					System.out.println("유효하지 않은 값을 입력하였습니다.");
-					System.out.println("다시 입력해주세요.");
-					
+					System.out.println("다시 입력해주세요. (*번호[숫자]또는 업무이름을 입력해주세요.*)");
 					
 					break;
 				}
-			}while(option != '5');
+			}while(option != "5");
 			System.out.println(customerName+"님, TH은행을 이용해 주셔서 감사합니다 :)");	
 		}
 	}
