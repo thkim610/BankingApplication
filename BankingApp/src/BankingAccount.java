@@ -140,7 +140,7 @@
 		//메뉴 선택
 		void showMenu() {
 			
-			String option;
+			String option = "0";
 			
 			Scanner sc = new Scanner(System.in);
 			System.out.println(customerName+"님, TH은행에 오신 걸 환영합니다.");
@@ -188,7 +188,7 @@
 					
 					break;
 				}
-			}while(option != "5");
+			}while(!(option.equals("5")||option.equals("종료")));
 			System.out.println(customerName+"님, TH은행을 이용해 주셔서 감사합니다 :)");	
 		}
 	}
