@@ -3,6 +3,7 @@
 	import java.util.*;
 
 	// 잘못 입력 시 예외처리
+	// 정규식 사용하여 입력 제한 두기
 
 	class BankingAccount{
 		static long balance; //잔액
@@ -16,6 +17,7 @@
 			customerName = sc1.next();
 			System.out.println("계좌 아이디를 입력하세요.>");
 			customerId = sc1.next();
+			
 		}
 		//잔액 저장
 		void balanceSave() {
